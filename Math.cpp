@@ -7,7 +7,7 @@
     Input:
        n, having prime number (1 to n).
     Output:
-       all primes are stored in vector<prime>.
+       all primes are stored in vector prime.
     Tested Problems:
 */
 
@@ -49,3 +49,44 @@ struct SeiveMethod
         }
     }
 };
+
+
+/*
+    Implementation of Prime Factorization of long long int type
+    Running time:
+        O(sqrt(n))
+    Usage:
+        only one function generatePrimeFactor() generates the primes.
+    Input:
+       n, whose prime factors we need.
+    Output:
+       all primes are stored in vector primeFactors.
+    Tested Problems:
+*/
+
+struct PrimeFact
+{
+    long long int n;
+    vector<long long int> primeFactors;
+    PrimeFact (long long int n) : n(n) {}
+    void generatePrimeFactor()
+    {
+        primeFactors.clear();
+        while(n%2==0)
+        {
+            primeFactors.push_back(2);
+            n/=2;
+        }
+        for(long long int i=3; i<=sqrt(n); i+=2)
+        {
+            while(n%i==0)
+            {
+                primeFactors.push_back(i);
+                n/=i;
+            }
+        }
+        if(n>2)
+            primeFactors.push_back(n);
+    }
+};
+
