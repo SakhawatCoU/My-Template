@@ -3,6 +3,7 @@
     Running time:
         O(sqrt(n))
     Usage:
+    (200000 or 2 x 10^5 ) porjonto prime ber kora jabe.
         only one function BuildSeive() generates the primes.
     Input:
        n, having prime number (1 to n).
