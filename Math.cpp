@@ -90,3 +90,30 @@ struct PrimeFact
     }
 };
 
+//total number of Reltively prime number of a Given number 
+// 12 --->>> 1,3,5,7 = total 4
+// 6 ---->>> 1,5 = total 2
+int Singlephi(int n)
+{
+    int ret = n;
+
+    for(int i=2; i*i<=n; i++)
+    {
+        if(n%i==0)
+        {
+            while(n%i==0)
+            {
+                n/=i;
+            }
+            ret-=(ret/i);
+        }
+    }
+    if(n>1)
+    {
+        ret-=(ret/n);
+    }
+    return ret;
+}
+
+
+ 
