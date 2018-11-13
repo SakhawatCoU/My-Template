@@ -40,7 +40,7 @@ struct SeiveMethod
 
                 if(i<=limit)
                 {
-                    for(int j=i*i; j<=n; j=j+i*2)
+                    for(long long int j=i*i; j<=n; j=j+i*2)
                     {
                         marked[j]=1;
                     }
