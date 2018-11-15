@@ -275,6 +275,7 @@ int main()
     int res = 1;
     for ( int i = 1; i < nprime && prime[i] <= sqrtn; i++ )
     {
+        if(mark[n]==0) break;
         if ( n % prime[i] == 0 )
         {
             int p = 0; // Counter for power of prime
