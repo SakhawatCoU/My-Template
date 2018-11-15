@@ -208,6 +208,89 @@ int main()
 
     return 0;
 }
+/**
+Prime factorization using seive prime generation 
+Size: Array size --->> 10^6
+
+**/
+
+#include<bits/stdc++.h>
+#define lli long long int
+#define scf(n) scanf("%lld",&n)
+#define rep1(n) for(int i=1;i<=n;i++)
+#define prf(n) printf("%lld",n)
+#define sci(n) scanf("%d",&n)
+#define pri(n) printf("%d",n)
+#define prl(n) printf("%lld",n)
+#define scl(n) scanf("%lld",&n)
+#define nl printf("\n")
+#define spc printf(" ")
+#define file freopen("in.txt","rt",stdin)
+#define pii pair<int,int>
+#define piii pair<int,string>
+using namespace std;
+int mark[1000009],prime[1000009],nprime =1;
+int limit,n;
+void PrimeNumber() /** Seive Method **/
+{
+    mark[1]=1;
+    mark[0] =1;
+    prime[nprime++]=2;
+
+    for(int i=4; i<=n; i+=2)
+        mark[i]=1;
+
+    for(int i=3; i<=n; i+=2)
+    {
+        if(!mark[i])
+        {
+            prime[nprime++]=i;
+
+            if(i<=limit)
+            {
+                for(int j=i*i; j<=n; j=j+i*2)
+                {
+                    mark[j]=1;
+                }
+            }
+        }
+    }
+
+}
+
+vector<int>factors;
+
+int main()
+{
+    sci(n);
+    limit = sqrt(n+1);
+    PrimeNumber();
+
+    int sqrtn = sqrt ( n );
+    for ( int i = 1; i < nprime && prime[i] <= sqrtn; i++ )
+    {
+        if ( n % prime[i] == 0 )
+        {
+            while ( n % prime[i] == 0 )
+            {
+                n /= prime[i];
+                factors.push_back(prime[i]);
+            }
+            sqrtn = sqrt ( n );
+        }
+    }
+    if ( n != 1 )
+    {
+        factors.push_back(n);
+    }
+    for(int i=0;i<factors.size();i++)
+    {
+        cout<<factors[i]<< " ";
+    }
+
+    return 0;
+}
+
 
 
 /** Number of Divisor NOD(n) Using Prime Factorization 
