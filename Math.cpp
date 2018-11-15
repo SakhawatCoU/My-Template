@@ -116,5 +116,99 @@ int Singlephi(int n)
     return ret;
 }
 
+/**
+
+Prime factorization Using Generation of Prime 
+
+***/
+#include<bits/stdc++.h>
+#define lli long long int
+#define scf(n) scanf("%lld",&n)
+#define rep1(n) for(int i=1;i<=n;i++)
+#define prf(n) printf("%lld",n)
+#define sci(n) scanf("%d",&n)
+#define pri(n) printf("%d",n)
+#define prl(n) printf("%lld",n)
+#define scl(n) scanf("%lld",&n)
+#define nl printf("\n")
+#define spc printf(" ")
+#define file freopen("in.txt","rt",stdin)
+#define pii pair<int,int>
+#define piii pair<int,string>
+using namespace std;
+
+struct SeiveMethod
+{
+
+    long long int n;
+    vector<long long int> prime;
+    SeiveMethod (long long int n): n(n) {}
+
+    void BuildSeive()
+    {
+        long long int marked[n+10];
+        memset(marked,0,sizeof marked);
+        prime.clear();
+        long long int limit = sqrt(n+1);
+        marked[0] = 1;
+        marked[1] = 1;
+        prime.push_back(2);
+
+        for(long long int i=4; i<=n; i+=2)
+            marked[i]=1;
+
+        for(long long int i=3; i<=n; i+=2)
+        {
+            if(!marked[i])
+            {
+                prime.push_back(i);
+
+                if(i<=limit)
+                {
+                    for(int j=i*i; j<=n; j=j+i*2)
+                    {
+                        marked[j]=1;
+                    }
+                }
+            }
+        }
+    }
+};
+
+
+
+vector<int>factors;
+
+int main()
+{
+    int n = 12;
+    SeiveMethod T(n);
+    T.BuildSeive();
+    int sqrtn = sqrt ( n );
+    for ( int i = 0; i < T.prime.size() && T.prime[i] <= sqrtn; i++ )
+    {
+        if ( n % T.prime[i] == 0 )
+        {
+            while ( n % T.prime[i] == 0 )
+            {
+                n /= T.prime[i];
+                factors.push_back(T.prime[i]);
+            }
+            sqrtn = sqrt ( n );
+        }
+    }
+    if ( n != 1 )
+    {
+        factors.push_back(n);
+    }
+    for(int i=0;i<factors.size();i++)
+    {
+        cout<<factors[i]<< " ";
+    }
+
+    return 0;
+}
+
+
 
  
